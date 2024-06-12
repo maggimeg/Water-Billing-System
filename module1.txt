@@ -1,0 +1,120 @@
+import java.util.*;
+import java.io.*;
+class Customer2
+{
+public static void main(String args[]) throws IOException {
+int i,num;
+int choice=0;
+int aadharno,motorno;
+String name,address;
+int searchAadharno=0;
+boolean flag=true;
+int snum;
+Scanner obj = new Scanner(System.in);
+while(flag)
+{
+System.out.println("\n Menu");
+System.out.println("1. Create Customer File");
+System.out.println("2. Add more records to Customer file");
+System.out.println("3. Search by Customer Aadhar number");
+System.out.println("4. Generate report");
+System.out.println("5.Quit");
+System.out.print("Enter your choice: ");
+choice = obj.nextInt();
+switch(choice){
+case 1: 
+FileWriter fout = new FileWriter("customer.txt");
+System.out.print("How many records? ");
+num= obj.nextInt();
+for(i=0;i<num;i++)
+{
+ System.out.print("Enter Customer Aadhar Number:");
+aadharno = obj.nextInt();
+ System.out.print("Enter Customer Name:");
+name=obj.next();
+ System.out.print("Enter Customer Motor Number:");
+motorno= obj.nextInt();
+System.out.print("Enter Customer Address:");
+address=obj.next();
+ System.out.print("\n");
+Formatter fmt1 = new Formatter();
+ fmt1.format("%10d \n  %10s\n  %4d \n  %10s \n",aadharno,name,motorno,address);
+fout.write(fmt1+"\r\012");
+
+}
+fout.close(); 
+System.out.println("File is created with given Customer details");  
+break;
+case 2:
+ FileWriter fout1 = new FileWriter("customer.txt",true);
+    System.out.print("How many records? ");
+num= obj.nextInt();
+for(i=0;i<num;i++)
+{
+ System.out.print("Enter Customer Aadhar Number:");
+aadharno =obj.nextInt();
+ System.out.print("Enter Customer Name:");
+name=obj.next();
+ System.out.print("Enter Customer Motor Number:");
+motorno = obj.nextInt();
+System.out.print("Enter Customer Address:");
+address=obj.next();
+System.out.print("\n");
+Formatter fmt2 = new Formatter();
+fmt2.format("%10d\n%10s\n%4d\n%10s\n",aadharno,name,motorno,address);
+fout1.write(fmt2+"\r\012");
+}
+fout1.close(); 
+System.out.println("New Customer records are added");  
+break;
+case 3:	snum=0;
+System.out.print("Enter Aadhar to search Customer information: ");
+searchAadharno = obj.nextInt();
+FileReader fin1 = new FileReader("customer.txt");
+Scanner sc1 = new Scanner(fin1);	
+while(sc1.hasNextInt()) 
+{
+aadharno = sc1.nextInt();	
+name = sc1.next();	
+motorno= sc1.nextInt();
+address=sc1.next();
+if(aadharno==searchAadharno)
+{
+++snum;
+System.out.println("S.No"+"    "+"Aadhar no"+"    "+"Name"+"    "+"Motor no"+"    "+"Address");
+Formatter fmt2 = new Formatter();
+ fmt2.format("%2d  %8d    %10s    %4d   %10s",snum,aadharno,name,motorno,address);
+System.out.println(fmt2);
+}
+}
+
+fin1.close(); 
+break;
+case 4:snum=0;
+ System.out.println("\t\t\tCustomer Details");
+FileReader fin3 = new FileReader("customer.txt");
+Scanner sc3 = new Scanner(fin3);
+ System.out.println("S.no"+"    "+"Aadhar no"+"    "+"Name"+"    "+"Motor no"+"    "+"Address");
+while(sc3.hasNextInt()) 
+{
+aadharno  = sc3.nextInt();	
+name = sc3.next();	
+motorno= sc3.nextInt();	
+address=sc3 .next();
+++snum; 	
+Formatter fmt2 = new Formatter();
+ fmt2.format("%2d  %8d   %10s   %4d    %10s",snum,aadharno,name,motorno,address);
+System.out.println(fmt2);	
+}
+System.out.println("End of list");
+fin3.close(); 
+break;
+case 5:	flag=false;
+
+break;
+default:System.out.println("Enter correct choice");
+}
+}
+System.out.println("Program is over");
+}
+}

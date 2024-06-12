@@ -1,0 +1,122 @@
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Formatter;
+import java.util.Scanner;
+class Bills3 {
+public static void main(String args[])throws IOException {
+int i,num;
+int choice=0;
+int aadharno,motorno;
+String name;
+int searchAadharno=0,bill=0;
+boolean flag=true;
+int snum;
+Scanner obj = new Scanner(System.in);
+while(flag)
+{
+System.out.println("\n   Menu");
+System.out.println("1.Create Bill file  ");
+System.out.println("2.Update  Bill file");
+System.out.println("3.Generate Reports");
+System.out.println("4. Quit");
+System.out.print("Enter your choice: ");
+choice = obj.nextInt();
+switch(choice){
+case 1: 
+	// Create a file.
+	FileWriter fout = new FileWriter("bill.txt");
+	//Read data from Keyboard
+	System.out.print("How many records? ");
+	num= obj.nextInt();
+	for(i=0;i<num;i++)
+	{
+ System.out.print("Enter Customer Aadharno :");
+	aadharno = obj.nextInt();
+ System.out.print("Enter Customer Name:");
+	name=obj.next();
+ System.out.print("Enter Motor Number:");
+	motorno = obj.nextInt();
+        System.out.print("\n");//print blankline
+	// Write to file.
+        System.out.println("Enter No of Gallons of water consumed:");
+        int units=obj.nextInt();
+        if(units>0&&units<=20)
+             bill=units*10;
+        else if(units>20&&units<=40)
+             bill=units*20;
+        else if(units>40&&units<=60)
+            bill=units*30;
+              else
+            bill=units*40;
+Formatter fmt1 = new Formatter();
+ fmt1.format("%8d\n%10s\n%4d\n%4d\n %4d\n",aadharno,name,motorno,units,bill);
+	fout.write(fmt1+"\r\012");
+	}
+	fout.close(); 
+	System.out.println("File is created with given details");  
+	break;
+
+case 2:
+         FileWriter fout1 = new FileWriter("bill.txt",true); 
+    System.out.print("How many records? ");
+	
+num= obj.nextInt();
+	for(i=0;i<num;i++)
+	{
+ System.out.print("Enter Customer Aadhar number:");
+	aadharno =obj.nextInt();
+ System.out.print("Enter Name:");
+	name=obj.next();
+ System.out.print("Enter Motor Number:");
+	motorno = obj.nextInt();
+        System.out.print("\n");
+	// Write to file.
+          System.out.println("Enter No of Gallons of Water Consumed:");
+        int units=obj.nextInt();
+        if(units>0&&units<=20)
+             bill=units*10;
+        else if(units>20&&units<=40)
+             bill=units*20;
+        else if(units>40&&units<=60)
+            bill=units*30;
+              else
+            bill=units*40;
+	Formatter fmt2 = new Formatter();
+ fmt2.format("%8d\n%10s\n  %4d\n%4d\n %4d\n",aadharno,name,motorno,units,bill);
+
+	fout1.write(fmt2+"\r\012");
+	}
+	fout1.close(); 
+	System.out.println("New bill records are added");  
+	break;
+case 3:snum=0;
+    System.out.println("\t\t\tReport");
+	//Read data from file
+	FileReader fin2 = new FileReader("bill.txt");
+	Scanner sc2 = new Scanner(fin2);
+         System.out.println(" S.no"+"         "+"   Aadhar no"+"       "+"Name"+"   "+" Motor No"+"   "+"No of Gallons"+"    "+"Bill");
+	while(sc2.hasNextInt()) 
+	{
+	aadharno = sc2.nextInt();	
+	name = sc2.next();	
+	motorno= sc2.nextInt();
+    int units = sc2.nextInt();
+        bill=sc2.nextInt();
+	++snum;	
+	Formatter fmt2 = new Formatter();
+     fmt2.format("\t%2d\t \t%8d \t%10s  \t%2d \t%4d \t\t%4d",snum,aadharno,name,motorno,units,bill);
+	System.out.println(fmt2);
+
+	}
+	System.out.println("End of list");
+	fin2.close(); 
+	break;
+case 4:	flag=false;
+	break;
+default:System.out.println("Wrong Choice!!");
+}
+}
+System.out.println("Program is over");
+}
+}

@@ -1,0 +1,384 @@
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.*;
+public class Integer2
+{
+   public static void main(String args[]) throws IOException
+{
+intchoice,i,j = 0,num=0;
+Scanner obj = new Scanner(System.in);
+String searchString,loginName,passWord, userPassword="Klu";
+while(true)
+{
+System.out.print("Login name(user/Quit):");
+loginName=obj.next();
+if(loginName.equals("Quit"))return;
+System.out.print("Password:");
+passWord=obj.next();
+if(loginName.equals("user"))
+	if(passWord.equals(userPassword))
+break;
+else
+System.out.println("Illegal LoginName or password");
+}
+boolean flag=true;
+while(flag)
+{
+System.out.println(“Welcome to Water Tax Billing System”);
+System.out.println("\n\n   Menu");
+System.out.println("1. Customer Information");
+System.out.println("2. Create Bills");
+System.out.println("3. Update Payments");
+System.out.println("4. Quit");
+System.out.print("Enter your choice: ");
+choice= obj.nextInt();
+switch(choice){
+ case 1:      
+{
+boolean flag1=true;
+    while(flag1)
+    {
+System.out.println("\n   Menu");
+System.out.println("1. Create Customer File");
+System.out.println("2. Add more records to Customer file");
+System.out.println("3. Search by Customer aadhar number");
+System.out.println("4. Generate report");
+System.out.println("5.Quit");
+System.out.print("Enter your choice: ");
+        choice = obj.nextInt();
+        switch(choice){
+            case 1:
+FileWriterfout = new FileWriter("customer.txt");
+System.out.print("How many records? ");
+num= obj.nextInt();
+                for(i=0;i<num;i++)
+                {
+System.out.print("enter customer aadhar number");
+intaadharno = obj.nextInt();
+System.out.print("Enter customer name");
+java.lang.String name=obj.next();
+System.out.print("enter motor number");
+intmotorno= obj.nextInt();
+System.out.print("enter customer address");
+java.lang.String address=obj.next();
+System.out.print("\n");
+                    Formatter fmt1 = new Formatter();
+                    fmt1.format("%10d\n%10s\n%4d\n%10s\n",aadharno,name,motorno,address);
+fout.write(fmt1+"\r\012");
+                }
+fout.close();
+
+System.out.println("File is created");
+                break;
+case 2:
+FileWriter fout1 = new FileWriter("customer.txt",true);
+System.out.print("How many records? ");
+num= obj.nextInt();
+                for(i=0;i<num;i++)
+                {
+System.out.print("enter customer aadhar number");
+intaadharno = obj.nextInt();
+System.out.print("Enter customer name");
+java.lang.String name = obj.next();
+System.out.print("enter  motor number");
+intmotorno = obj.nextInt();
+System.out.print("enter customer address");
+java.lang.String address = obj.next();
+System.out.print("\n");
+                    Formatter fmt2 = new Formatter();                    fmt2.format("%10d\n%10s\n%4d\n%10s\n",aadharno,name,motorno,address);
+                    fout1.write(fmt2+"\r\012");
+                }
+                fout1.close();
+System.out.println("new customer records are added");
+                break;
+
+            case 3:	intsnum = 0;
+System.out.print("enter search Aadhar no: ");
+intsearchAadharno = obj.nextInt();
+FileReader fin1 = new FileReader("customer.txt");
+            Scanner sc1 = new Scanner(fin1);
+            while(sc1.hasNextInt())
+            {
+intaadharno = sc1.nextInt();
+java.lang.String name = sc1.next();
+intmotorno = sc1.nextInt();
+java.lang.String address = sc1.next();
+                if(aadharno==searchAadharno)
+                {
+                    ++snum;
+System.out.println("s.no"+"    "+"Aadhar no"+"    "+"Name"+"    "+"Motor no"+"    "+"address");
+                    Formatter fmt2 = new Formatter();
+                    fmt2.format("%2d %8d    %10s    %4d   %10s",snum,aadharno,name,motorno,address);
+System.out.println(fmt2);
+                }
+            }
+            fin1.close();
+            break;
+
+            case 4:snum=0;
+System.out.println("\t\t\tCustomer Details");
+FileReader fin3 = new FileReader("customer.txt");
+            Scanner sc3 = new Scanner(fin3);
+System.out.println("s.no"+"    "+"Aadhar no"+"    "+"Name"+"    "+"Motor no"+"    "+"address");
+            while(sc3.hasNextInt())
+            {
+intaadharno = sc3.nextInt();
+java.lang.String name = sc3.next();
+intmotorno = sc3.nextInt();
+java.lang.String address = sc3 .next();
+                ++snum;
+                Formatter fmt2 = new Formatter();
+                fmt2.format("%2d %8d    %10s    %4d   %10s",snum,aadharno,name,motorno,address);
+System.out.println(fmt2);
+            }
+System.out.println("End of list");
+            fin3.close();
+            break;
+case 5:	flag1=false;
+            break;
+default:System.out.println("Enter correct choice");
+
+       }
+    }
+}
+	break;
+ case 2:	{
+boolean flag2=true;
+    while(flag2)
+    {
+System.out.println("\n   Menu");
+System.out.println("1.To create Bills file  ");
+System.out.println("2.To update  Bills file");
+System.out.println("3.To generate Reports");
+System.out.println("4. Quit");
+System.out.print("Enter your choice: ");
+        choice = obj.nextInt();
+switch(choice)
+{
+            case 1:
+                // Create a file.
+FileWriterfout = new FileWriter("bill.txt");
+                //Read data from Keyboard
+System.out.print("How many records? ");
+num= obj.nextInt();
+                for(i=0;i<num;i++)
+                {
+System.out.print("Enter customer Aadharno :");
+intaadharno = obj.nextInt();
+System.out.print("Enter customer name");
+java.lang.String name = obj.next();
+System.out.print("Enter Motor number");
+intmotorno = obj.nextInt();
+System.out.print("\n");//print blankline
+                    // Write to file.
+System.out.println("Enter no of Gallons of water consumed");
+int units=obj.nextInt();
+int bill;
+                    if(units>0&&units<=20)
+                        bill=units*10;
+                    else if(units>20&&units<=40)
+                        bill=units*20;
+                    else if(units>40&&units<=60)
+                        bill=units*30;
+                    else
+                        bill=units*40;                    
+                    Formatter fmt1 = new Formatter();
+                    fmt1.format("%8d\n%10s\n%4d\n%4d\n %4d\n",aadharno,name,motorno,units,bill);
+fout.write(fmt1+"\r\012");
+
+    }
+fout.close();
+System.out.println("File is created");
+                break;
+ case 2:
+FileWriter fout1 = new FileWriter("bill.txt",true);//true means file will be opened in append mode
+System.out.print("How many records? ");
+num= obj.nextInt();
+                for(i=0;i<num;i++)
+                {
+System.out.print("Enter customer Aadhar number:");
+intaadharno = obj.nextInt();
+System.out.print("Enter name:");
+java.lang.String name = obj.next();
+System.out.print("enter motor number:");
+intmotorno = obj.nextInt();
+System.out.print("\n");//print blankline
+                    // Write to file.
+System.out.println("enter no of Gallons of waterconsumed");
+int units=obj.nextInt();
+int bill;
+                    if(units>0&&units<=20)
+                        bill=units*10;
+
+  else if(units>20&&units<=40)
+                        bill=units*20;
+                    else if(units>40&&units<=60)
+                        bill=units*30;
+                    else
+                        bill=units*40;
+                    Formatter fmt2 = new Formatter();
+                    fmt2.format("%8d\n%10s\n  %4d\n%4d\n %4d\n",aadharno,name,motorno,units,bill);
+                    fout1.write(fmt2+"\r\012");
+                }
+                fout1.close();
+System.out.println("New records are added");
+                break;
+ case 3:int snum = 0;
+System.out.println("\t\t\tReport");
+            //Read data from file
+FileReader fin2 = new FileReader("bill.txt");
+            Scanner sc2 = new Scanner(fin2);
+System.out.println("       S.no"+"    "+"   Aadhar no"+"    "+"Name"+"   "+" motor no"+"   "+"no of units"+"    "+"bill");
+            while(sc2.hasNextInt())
+            {
+intaadharno = sc2.nextInt();
+
+java.lang.String name = sc2.next();
+intmotorno = sc2.nextInt();
+int units = sc2.nextInt();
+int bill = sc2.nextInt();
+                //Display formatted output
+                ++snum;//increment serial number
+                Formatter fmt2 = new Formatter();
+                fmt2.format("\t%2d\t %8d %10s  %2d %4d %4d",snum,aadharno,name,motorno,units,bill);
+System.out.println(fmt2);
+            }
+System.out.println("End of list");
+            fin2.close();
+            break;
+ case 4:	flag2=false;
+            break;
+            default: System.out.println("Wrong Choice!!");
+        }
+}
+}
+	break;
+ case 3: 
+ {
+boolean flag3=true;
+
+while(flag3)
+    {
+System.out.println("\n   Menu");
+System.out.println("1. Update bill payments");
+System.out.println("2. to notify defaulters");
+System.out.println("3. generate report");
+System.out.println("4. Quit");
+System.out.print("Enter your choice: ");
+        choice = obj.nextInt();
+        switch(choice)
+{
+            case 1:
+FileReader fin1 = new FileReader("bill.txt");
+                Scanner sc1 = new Scanner(fin1);
+                while(sc1.hasNextInt())
+                {
+intaadharno = sc1.nextInt();
+java.lang.String name = sc1.next();
+intintMarks = sc1.nextInt();
+int unit = sc1.nextInt();
+int bill = sc1.nextInt();
+int reg1=aadharno;
+java.lang.String name1 = name;
+int motor=intMarks;
+int unit1 = unit;
+int bill2 = bill;
+System.out.println("aadhar number"+reg1+"\nname"+name1+"\nmotorno"+motor);
+System.out.println("\nthe amount to be paid"+bill2);
+System.out.println("enter your choice");
+System.out.println("1.pay now");
+System.out.print("2.later");
+int pay = obj.nextInt();
+                    if(pay==1)
+                    {
+java.lang.String status = "paid";
+System.out.println("\nyou have paid an amount of"+bill2+"sucessfully");
+FileWriter fout4 = new FileWriter("update.txt",true);
+                        Formatter fmt3 = new Formatter();
+                        fmt3.format("%8d\n%10s\n  %2d\n%4d\n%4d\n %10s\n",reg1,name1,motor,unit1,bill2,status);
+                        fout4.write(fmt3+"\r\012");
+                        fout4.close();
+                    }
+                    else if(pay==2)
+                    {
+java.lang.String status = "unpaid";
+                        Formatter fmt2 = new Formatter();
+FileWriter fout4 = new FileWriter("update.txt",true);
+                        fmt2.format("%8d\n%10s\n  %2d\n%4d\n%4d\n %10s\n",reg1,name1,motor,unit1,bill2,status);
+                        fout4.write(fmt2+"\r\012");
+                        fout4.close();
+                    }
+          }       
+        fin1.close();break;
+  case 2:
+intsnum = 0;
+                //Read data from file
+FileReader fin2 = new FileReader("update.txt");
+                Scanner sc2 = new Scanner(fin2);
+                while(sc2.hasNextInt())
+                {
+intaadharno = sc2.nextInt();
+java.lang.String name = sc2.next();
+intintMarks = sc2.nextInt();
+int units = sc2.nextInt();
+int bill = sc2.nextInt();
+java.lang.String status = sc2.next();
+                    if("unpaid".equals(status))
+                    {
+                        //Display formatted output
+
+   ++snum;
+                        Formatter fmt2 = new Formatter();
+                        fmt2.format("%2d.\tAadharno.: %8d",snum,aadharno);
+                        Formatter fmt3 = new Formatter();
+                        fmt3.format("\tName: %10s motor no: %2d Bill:%4d Status:%10s",name,intMarks,bill,status);
+System.out.println("you have to pay an amount of "+bill+"as water tax");
+System.out.println(fmt2);
+System.out.println(fmt3);
+                    }
+                }
+                fin2.close();
+                break;
+ case 3:snum=0;
+            //Read data from file
+FileReader fin = new FileReader("update.txt");
+            Scanner sc = new Scanner(fin);
+            while(sc.hasNextInt())
+            {
+intaadharno = sc.nextInt();
+java.lang.String name = sc.next();
+intintMarks = sc.nextInt();
+
+int units = sc.nextInt();
+int bill = sc.nextInt();
+java.lang.String status4=sc.next();
+                //Display formatted output
+                ++snum;//increment serial number
+                Formatter fmt2 = new Formatter();
+                fmt2.format("%2d.\tAadharno.: %8d",snum,aadharno);
+                Formatter fmt3 = new Formatter();
+                fmt3.format("\tName: %10s Motor.no: %2d no of units=%4d BILL:%4d %10s",name,intMarks,units,bill,status4);
+System.out.println(fmt2);
+System.out.println(fmt3);
+            }
+System.out.println("End of list");
+fin.close();
+            break;
+
+            case 4:	flag3=false;	
+            break;
+            default: System.out.println("Wrong Choice!!");
+        }
+    }
+}
+	break;
+ case 4:flag=false;
+break;
+default: System.out.println("Wrong Choice!!");
+}
+}
+System.out.println("Program is over");
+System.out.println(“Thank You”);
+}
+}
